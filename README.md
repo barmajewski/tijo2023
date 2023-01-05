@@ -40,7 +40,7 @@ Do stworzenia projektu posłużą technologie:
 
 ## Schemat bazy danych
 
-![alt text](https://ibb.co/YX9PGSJ)
+![plot](./baza_danych.png)
 
 #### Projekt stworzony przez Bartłomieja Majewskiego
 
