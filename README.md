@@ -40,7 +40,7 @@ Do stworzenia projektu posłużą technologie:
 
 ## Schemat bazy danych
 
-![plot](./baza_danych.png)
+![Screenshot](baza_danych.PNG)
 
 #### Projekt stworzony przez Bartłomieja Majewskiego
 
