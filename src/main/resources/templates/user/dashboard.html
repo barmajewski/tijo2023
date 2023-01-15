@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Zaloguj się</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.css">
+
+</head>
+
+<body class="home-page">
+<!-- Start Contact -->
+<div class="container py-5" style="width: 70%">
+    <div class="row py-3">
+        <div class="col-md-3">
+            <th:block th:include="include/sidebar"></th:block>
+        </div>
+        <br>
+        <div class="col-md-9" style="padding-left: 50px">
+            <div class="col-12" style="padding-bottom: 15px" th:each="message : ${messageList}">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div style="width: 75px; height: 75px; display: inline-block">
+                                <img src="/img/marchewiki.png" class="img-responsive"
+                                     style="height: 100%; width: 100%; border-radius: 5rem">
+                            </div>
+                            <span class="post-nick-name" th:text="${message.user.firstName + ' ' + message.user.lastName}"></span>
+                        </div>
+                        <div class="tag-form">
+                            <small class="custom-tag" th:each="tag :${message.tags}" th:text="${'#'+tag.name}">Hello</small>
+                        </div>
+                        <p th:text="${message.messageContent}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of type</p>
+                        <div style="border-top: 1px solid black">
+                            <form method="post" th:action="@{/panel/uzytkownik/komentuj}">
+                                <input type="hidden" th:value="${message.messageId}" name="messageId">
+                                <input class="form-control" style="margin-top: 5px;margin-bottom: 5px" placeholder="Treść komentarza" name="content">
+                                <button class="btn btn-dark pull-right" style="background-color: #16B1b5;border: 0;">Dodaj komentarz</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="padding-bottom: 15px">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div style="width: 75px; height: 75px; display: inline-block">
+                                <img src="/img/marchewiki.png" class="img-responsive"
+                                     style="height: 100%; width: 100%; border-radius: 5rem">
+                            </div>
+                            <span style="position: relative; top: 10%;left: 2%">User 1</span>
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of type</p>
+                        <img src="/img/Dla%20piesolubnych.png" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="padding-bottom: 15px">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div style="width: 75px; height: 75px; display: inline-block">
+                                <img src="/img/marchewiki.png" class="img-responsive"
+                                     style="height: 100%; width: 100%; border-radius: 5rem">
+                            </div>
+                            <span style="position: relative; top: 10%;left: 2%">User 1</span>
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of type</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Contact -->
+
+<th:block th:include="include/footer"></th:block>
+
+<!-- Start Script -->
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/templatemo.js"></script>
+<script src="/js/custom.js"></script>
+<!-- End Script -->
+</body>
+
+</html>

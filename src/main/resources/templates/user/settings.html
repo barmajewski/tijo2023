@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Ustawienia</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.css">
+
+
+    <!-- Load map styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <style>
+        footer{
+            position: absolute;
+        }
+        .txta {
+            width: 100%;
+            min-height: 150px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            overflow: hidden;
+            line-height: 1.4;
+            resize: none;
+        }
+    </style>
+</head>
+
+<body class="home-page">
+
+<!-- Start Contact -->
+<div class="container py-5" style="width: 70%">
+    <div class="row py-3" >
+        <div class="col-md-3">
+            <th:block th:include="include/sidebar"></th:block>
+        </div>
+        <br>
+        <div class="col-md-9" style="padding-left: 50px">
+            <div class="col-12">
+                <div class="card">
+                    <form method="post" th:action="@{/panel/uzytkownik/ustawienia}">
+                        <div class="card-body">
+                            <div style="margin: 5px">
+                                <input class="form-control" type="text" placeholder="Imię">
+                            </div>
+                            <div style="margin: 5px">
+                                <input class="form-control" type="text" placeholder="Nazwisko">
+                            </div>
+                            <div style="margin: 5px">
+                                <input class="form-control" type="email" placeholder="Email">
+                            </div>
+
+                            <div class="col text-end mt-2">
+                                <button type="submit" class="btn btn-success" id="registerButton">Aktualizuj profil</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+<th:block th:include="include/footer"></th:block>
+
+<!-- Start Script -->
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/templatemo.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+
+
+</html>

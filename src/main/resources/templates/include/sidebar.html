@@ -1,0 +1,42 @@
+<div class="col-md-12" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="profile-nav" sec:authorize="hasAuthority('ROLE_USER')">
+        <div class="user-image">
+            <img src="/img/marchewiki.png" class="img-responsive" alt="Zdjęcie profilowe">
+        </div>
+
+        <div class="card-body" style="padding: 0px">
+            <h3 style="margin-top: 10px" th:text="${loggedUser.firstName+ ' ' +loggedUser.lastName}"></h3>
+        </div>
+        <div class="hire-btn">
+            <a class="custom-btn nav-link text-dark" th:href="@{/panel/uzytkownik/wiadomosc/utworz-wiadomosc}">Dodaj post</a>
+            <a class="custom-btn nav-link text-dark" th:href="@{/panel/uzytkownik/wiadomosc/moje-wiadomosci}">Zobacz moje posty</a>
+            <a class="custom-btn nav-link text-dark" th:href="@{/panel/uzytkownik}">Wszystkie wiadomości</a>
+        </div>
+        <div class="input-group mb-3" style="margin-top: 15px">
+            <label>Znajdź wiadomości po tagu</label><br>
+            <div class="input-group-append">
+                <input type="text" class="form-control">
+                <i class="btn btn-outline-secondary" type="button">Wyszukaj</i>
+            </div>
+        </div>
+        <div class="hire-btn">
+            <a class="custom-btn nav-link text-dark" th:href="@{/panel/uzytkownik/ustawienia}">Ustawienia</a>
+            <a class="custom-btn nav-link text-dark" th:href="@{/wyloguj}">Wyloguj</a>
+        </div>
+    </div>
+
+    <div class="profile-nav" sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <div class="user-image">
+            <img src="/img/rythm-chan-bot-discord.png" class="img-responsive" alt="Zdjęcie profilowe">
+        </div>
+
+        <div class="card-body" style="padding: 0px">
+            <h3 style="margin-top: 10px" th:text="${loggedUser.firstName+ ' ' +loggedUser.lastName}"></h3>
+        </div>
+        <div class="hire-btn">
+            <a class="custom-btn nav-link text-dark" th:href="@{/panel/admin}">Strona główna</a>
+            <a class="custom-btn nav-link text-dark" th:href="@{/panel/admin/uzytkownicy}">Lista użytkowników</a>
+            <a class="custom-btn nav-link text-dark" th:href="@{/wyloguj}">Wyloguj</a>
+        </div>
+    </div>
+</div>

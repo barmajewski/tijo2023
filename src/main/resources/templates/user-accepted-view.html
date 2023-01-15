@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zichtterek</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.css">
+
+    <style>
+        footer{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<th:block th:include="include/header"></th:block>
+
+<!-- Start Content Page -->
+<div class="container-fluid bg-light py-5 success-link" style="padding: 5rem 0 !important; display: none">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1">Konto zostało aktywowane</h1>
+        <h3>Dziękujemy za wybranie naszego portalu</h3>
+    </div>
+</div>
+
+<!-- Start Content Page -->
+<div class="container-fluid bg-light py-5 error-link" style="padding: 5rem 0 !important; display: none">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1">Coś poszło nie tak</h1>
+        <h3>Skontaktuj się z administratorem w celu rozwiązania problemu</h3>
+    </div>
+</div>
+
+
+<!-- Start Contact -->
+<div class="container py-5">
+    <div class="row py-3" th:align="center">
+        <a class="custom-link" th:href="@{/}">Wróć na strone startową</a>
+    </div>
+</div>
+<!-- End Contact -->
+
+<th:block th:include="include/footer"></th:block>
+
+<!-- Start Script -->
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/templatemo.js"></script>
+<script src="/js/custom.js"></script>
+
+<script>
+
+    (function showAlert() {
+        const url = window.location.href;
+        const successAlert = document.querySelector('.success-link');
+        const failAlert = document.querySelector('.error-link');
+        if (url.indexOf('?success') != -1) {
+            successAlert.style.display = 'block';
+            failAlert.style.display = 'none';
+        } else if(url.indexOf('?error') != -1) {
+            successAlert.style.display = 'none';
+            failAlert.style.display = 'block';
+        }
+    })();
+</script>
+
+</body>
+</html>

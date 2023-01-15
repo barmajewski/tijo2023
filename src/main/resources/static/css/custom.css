@@ -1,0 +1,161 @@
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.carousel-inner img {
+    max-width: 915px;
+    height: auto;
+}
+
+#custCarousel .carousel-indicators {
+    position: static;
+    margin-top:20px;
+}
+
+#custCarousel .carousel-indicators > li {
+    width:100px;
+}
+
+#custCarousel .carousel-indicators li img {
+    display: block;
+    opacity: 0.5;
+}
+
+#custCarousel .carousel-indicators li.active img {
+    opacity: 1;
+}
+
+#custCarousel .carousel-indicators li:hover img {
+    opacity: 0.75;
+}
+
+.carousel-item img{
+
+    width:100%;
+}
+
+.text-price {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px !important;
+    font-weight: 600 !important;
+}
+
+.img-centered-h {
+    display: block;
+    margin: auto;
+}
+
+.image-blurred-edge {
+    /*background-image: url('/static/img/defaults/about-default.jpg');*/
+    /* you need to match the shadow color to your background or image border for the desired effect*/
+    background: #282626;
+    box-shadow: 0 0 8px 8px #282626 inset;
+}
+
+.margin-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-body {
+    position: relative;
+}
+.dashboard-body .profile-nav ul > li {
+    border-bottom: 1px solid #d1d1d1;
+    margin-top: 0;
+    line-height: 30px;
+}
+.dashboard-body .profile-nav ul > li:last-child {
+    border-bottom: none;
+}
+.dashboard-body .profile-nav ul > li > a {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    color: #242424;
+    border-left: 5px solid #fff;
+    font-size: 18px;
+}
+.dashboard-body .profile-nav ul > li > a:hover,
+.dashboard-body .profile-nav ul > li > a:focus,
+.dashboard-body .profile-nav ul li.active a {
+    background: #cb9b45;
+    border-left: 5px solid #9b6f23;
+    color: #fff !important;
+}
+.dashboard-body .profile-nav ul > li > a:hover .fa,
+.dashboard-body .profile-nav ul > li > a:focus .fa,
+.dashboard-body .profile-nav ul > li.active .fa {
+    color: #fff !important;
+}
+.dashboard-body .profile-nav ul > li > a:hover {
+    color: #fff !important;
+}
+.dashboard-body .profile-nav ul > li > a > i {
+    font-size: 16px;
+    padding-right: 10px;
+    color: #cb9b45;
+}
+.dashboard-body .profile-nav ul > li > a:hover i {
+    color: #cb9b45 !important;
+}
+.ctm-comments-container {
+    padding-left: 20px;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+}
+.home-page{
+    background-color: #D0D0D0;
+}
+
+.post-nick-name{
+    position: relative; top: 10%;left: 2%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.tag-form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+.custom-tag{
+    font-weight: bold;
+    background-color: #343434 ;
+    color: white;
+    box-shadow: 0px 0px 5px gray;
+    display: flex;
+    max-width: 20%;
+    border-radius: 15px;
+    margin: 2px;
+    padding: 5px;
+}
+.custom-tag:hover{
+    background-color: #16B1b5;
+}
+
+.custom-btn{
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+.custom-btn:hover{
+    background-color: #a2a2a2;
+}
+
+.custom-textarea{
+    background-color: #f8f8f8;
+    border: 2px solid #c6c6c6;
+}
+.custom-link{
+    font-size: 25px !important;
+    text-decoration: none;
+}
+/*.btn:hover{*/
+/*    background-color: #025762;*/
+/*}*/

@@ -10,5 +10,5 @@ public interface TagService {
 
     Optional<Tag> findByName(String name);
 
-    void save(Tag newTag);
+    Tag save(Tag newTag);
 }

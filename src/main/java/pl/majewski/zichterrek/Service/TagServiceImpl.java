@@ -26,7 +26,7 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    public void save(Tag newTag) {
-        tagRepo.save(newTag);
+    public Tag save(Tag newTag) {
+        return tagRepo.save(newTag);
     }
 }

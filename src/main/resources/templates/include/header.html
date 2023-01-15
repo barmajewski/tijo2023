@@ -1,0 +1,36 @@
+<!-- Header -->
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<nav class="navbar navbar-expand-lg navbar-light shadow" style="background-color:var(--bs-gray-dark)">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a class="mt-0 mb-0" th:href="@{/}"><img src="/img/zichterrek_logo.png" alt="Zichterrek" style="max-height: 60px">  </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <div class="flex-fill">
+                <ul class="nav navbar-nav d-flex pull-right">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/o-projekcie}" sec:authorize="!isAuthenticated()">O projekcie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/dolacz}" sec:authorize="!isAuthenticated()">Zarejestruj się</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/}" sec:authorize="!isAuthenticated()">Zaloguj się </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/panel/uzytkownik}" sec:authorize="isAuthenticated()">Panel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" th:href="@{/wyloguj}" sec:authorize="isAuthenticated()">Wyloguj</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Close Header -->
