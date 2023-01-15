@@ -123,13 +123,12 @@ class UserServiceImplTest {
                 .lastName("Wiśniewski")
                 .email("jacekw@test.com")
                 .build();
-        doReturn(user1).when(userRepo).save(user1);
+        doReturn(null).when(userRepo).save(user1);
         //when
         userService = new UserServiceImpl(userRepo);
-        user1.setFirstName("Tomek");
         User editedUser = userService.edit(user1);
         //then
-        Assertions.assertNotEquals("Jacek",editedUser.getFirstName());
+        Assertions.assertNull(editedUser);
     }
 
     @Test
@@ -148,12 +147,12 @@ class UserServiceImplTest {
     void findByIdShouldFail() {
         List<User> userList = createUsers();
         Optional<User> optionalUser = Optional.ofNullable(userList.get(0));
-        doReturn(optionalUser).when(userRepo).findById(1L);
+        doReturn(null).when(userRepo).findById(1L);
         //when
         userService = new UserServiceImpl(userRepo);
         Optional<User> findUser = userService.findById(1L);
         //then
-        Assertions.assertNotEquals(userList.get(1),findUser.get());
+        Assertions.assertNull(findUser);
     }
 
     @Test

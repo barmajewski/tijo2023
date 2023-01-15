@@ -23,13 +23,13 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void save(Message message) {
-        messageRepo.save(message);
+    public Message save(Message message) {
+        return messageRepo.save(message);
     }
 
     @Override
-    public void edit(Message message) {
-        messageRepo.save(message);
+    public Message edit(Message message) {
+        return messageRepo.save(message);
     }
 
     @Override

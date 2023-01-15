@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface MessageService {
     Optional<Message> findById(Long messageId);
-    void save(Message message);
-    void edit(Message message);
+    Message save(Message message);
+    Message edit(Message message);
     List<Message> findAllMessage();
     List<Message> findAllUserMessage(User user);
 }
