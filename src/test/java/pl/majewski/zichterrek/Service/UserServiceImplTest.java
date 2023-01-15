@@ -145,8 +145,7 @@ class UserServiceImplTest {
 
     @Test
     void findByIdShouldFail() {
-        List<User> userList = createUsers();
-        Optional<User> optionalUser = Optional.ofNullable(userList.get(0));
+        //given
         doReturn(null).when(userRepo).findById(1L);
         //when
         userService = new UserServiceImpl(userRepo);
