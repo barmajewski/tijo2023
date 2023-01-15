@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Sort;
 import pl.majewski.zichterrek.Model.Message;
 import pl.majewski.zichterrek.Model.User;
 import pl.majewski.zichterrek.Repository.MessageRepo;
@@ -14,9 +13,7 @@ import pl.majewski.zichterrek.Repository.UserRepo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -60,7 +57,6 @@ class MessageServiceImplTest {
     @BeforeEach
     void createMessages(){
         List<User> userList = createUsers();
-        List<Message> messageList = new ArrayList<>();
         Message message1 = Message.builder()
                 .messageId(1L)
                 .messageContent("test1")
@@ -230,9 +226,37 @@ class MessageServiceImplTest {
 
     @Test
     void findAllUserMessageShouldSucceed() {
+        //given
+        List<User> userList = createUsers();
+        User user = userList.get(0);
+        List<Message> userMessage = new ArrayList<>();
+        for (Message message : messageList){
+            if (message.getUser()==user)
+                userMessage.add(message);
+        }
+        doReturn(userMessage).when(messageRepo).findAllByUserOrderByMessageIdDesc(user);
+        //when
+        messageService = new MessageServiceImpl(messageRepo);
+        List<Message> findMessageList = messageService.findAllUserMessage(user);
+        //then
+        Assertions.assertEquals(userMessage,findMessageList);
     }
 
     @Test
     void findAllUserMessageShouldFail() {
+        //given
+        List<User> userList = createUsers();
+        User user = userList.get(0);
+        List<Message> userMessage = new ArrayList<>();
+        for (Message message : messageList){
+            if (message.getUser()==user)
+                userMessage.add(message);
+        }
+        doReturn(null).when(messageRepo).findAllByUserOrderByMessageIdDesc(user);
+        //when
+        messageService = new MessageServiceImpl(messageRepo);
+        List<Message> findMessageList = messageService.findAllUserMessage(user);
+        //then
+        Assertions.assertNull(findMessageList);
     }
 }
