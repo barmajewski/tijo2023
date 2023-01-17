@@ -50,9 +50,9 @@ public class Message {
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
 //    private LocalDate dateTimeAdded;
 
-//    @JoinColumn(name = "zdjęcie")
-//    @OneToOne
-//    private File attachment;
+    @JoinColumn(name = "zdjęcie")
+    @OneToOne
+    private File attachment;
 
     @Transient
     @JsonIgnore

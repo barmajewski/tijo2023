@@ -41,10 +41,11 @@ public class UserHomePageController {
     @PostMapping("/komentuj")
     public String commentMessage(@RequestParam Long messageId, @ModelAttribute Comments comments){
         try {
-
+            Optional<User> loggedUser = userService.findLogged();
             Optional<Message> optionalMessage = messageService.findById(messageId);
             if (optionalMessage.isPresent()){
                 List<Comments> commentsList = optionalMessage.get().getCommentsList();
+                comments.setUser(loggedUser.get());
                 comments = commentService.save(comments);
                 commentsList.add(comments);
                 optionalMessage.get().setCommentsList(commentsList);

@@ -2,7 +2,9 @@ package pl.majewski.zichterrek.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import pl.majewski.zichterrek.Forms.NewPost;
 import pl.majewski.zichterrek.Model.File;
 import pl.majewski.zichterrek.Model.Message;
@@ -10,6 +12,7 @@ import pl.majewski.zichterrek.Model.Tag;
 import pl.majewski.zichterrek.Model.User;
 import pl.majewski.zichterrek.Service.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -40,8 +43,8 @@ public class UserMessageController {
     }
 
     @PostMapping("/utworz-wiadomosc")
-    public String getMessageCreator(@ModelAttribute @Valid Message message/*, @RequestParam(name = "attachment", required = false) MultipartFile attachment */
-    ){
+    @Transactional
+    public String getMessageCreator(@ModelAttribute @Valid Message message/*, @RequestParam(name = "attachment") MultipartFile attachment*/){
         try{
             Optional<User> loggedUser = userService.findLogged();
             File newPhoto = new File();
@@ -59,9 +62,9 @@ public class UserMessageController {
                 message.setTags(tagSet);
             }
 
-//            if (attachment.getSize() != 0){
-//                String filename = fileStorageService.saveImage(attachment, "culinary-activities");
-//                String url = MvcUriComponentsBuilder.fromMethodName(File.class, "getFile","culinary-activities", filename).build().toString();
+//            if (!attachment.isEmpty()){
+//                String filename = fileStorageService.saveImage(attachment, "attachment");
+//                String url = MvcUriComponentsBuilder.fromMethodName(File.class, "getFile","attachment", filename).build().toString();
 //                newPhoto.setUrl(url);
 //                newPhoto.setName(filename);
 //                newPhoto = fileService.saveImage(newPhoto);
@@ -100,36 +103,31 @@ public class UserMessageController {
     }
 
     @PostMapping("/edytuj")
+    @Transactional
     public String editPost(@ModelAttribute Message message){
         try {
-            Optional<User> loggedUser = userService.findLogged();
             File newPhoto = new File();
 
-            Set<Tag> tagSet = message.getTags();
-            System.out.println(tagSet);
-            if (message.getTagNames() != null && message.getTagNames().length > 0) {
-                Arrays.stream(message.getTagNames()).forEach(name -> tagService.findByName(name).ifPresentOrElse(
-                        tag -> {tagSet.add(tag);},
-                        () -> {
-                            Tag newTag = new Tag();
-                            newTag.setName(name);
-                            tagService.save(newTag);
-                            tagSet.add(newTag);
-                        }));
-                message.setTags(tagSet);
-            }
+            Optional<Message> optionalMessage = messageService.findById(message.getMessageId());
+            if (optionalMessage.isPresent()) {
+                Set<Tag> newTagSet = new HashSet<>();
+                if (message.getTagNames() != null && message.getTagNames().length > 0) {
+                    Arrays.stream(message.getTagNames()).forEach(name -> tagService.findByName(name).ifPresentOrElse(
+                            tag -> {
+                                newTagSet.add(tag);
+                            },
+                            () -> {
+                                Tag newTag = new Tag();
+                                newTag.setName(name);
+                                tagService.save(newTag);
+                                newTagSet.add(newTag);
+                            }));
+                    message.setTags(newTagSet);
+                }
+                message.setCommentsList(optionalMessage.get().getCommentsList());
 
-//            if (attachment.getSize() != 0){
-//                String filename = fileStorageService.saveImage(attachment, "culinary-activities");
-//                String url = MvcUriComponentsBuilder.fromMethodName(File.class, "getFile","culinary-activities", filename).build().toString();
-//                newPhoto.setUrl(url);
-//                newPhoto.setName(filename);
-//                newPhoto = fileService.saveImage(newPhoto);
-//
-//                message.setAttachment(newPhoto);
-//            }
-            message.setUser(loggedUser.get());
-            messageService.save(message);
+                messageService.save(message);
+            }
             return "redirect:/panel/uzytkownik/wiadomosc/moje-wiadomosci?success";
         } catch (Exception e){
             return "redirect:/panel/uzytkownik/wiadomosc/moje-wiadomosci?error";

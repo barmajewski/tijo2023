@@ -40,7 +40,8 @@
                     </div>
                     <div class="card-body col-4">
                         <a class="btn btn-danger" style="background-color: #16B1b5 !important;border: 0;width: -webkit-fill-available;margin-bottom: 5px"th:href="@{|/panel/admin/uzytkownicy/${user.userId}|}">Zobacz posty</a>
-                        <a class="btn btn-danger" style="width: -webkit-fill-available;" th:href="@{|/panel/admin/uzytkownicy/zablokuj/${user.userId}|}">Zablokuj Użytkownika</a>
+                        <a class="btn btn-danger" th:if="${user.enabled == true}" style="width: -webkit-fill-available;" th:href="@{|/panel/admin/zablokuj/${user.userId}|}">Zablokuj Użytkownika</a>
+                        <a class="btn btn-danger" th:unless="${user.enabled == true}"style="width: -webkit-fill-available;" th:href="@{|/panel/admin/odblokuj/${user.userId}|}">Odblokuj Użytkownika</a>
                     </div>
                 </div>
             </div>

@@ -35,10 +35,21 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findAllMessage() {
         return messageRepo.findAll(Sort.by(Sort.Direction.DESC,"messageId"));
+//        return messageRepo.findAll();
     }
 
     @Override
     public List<Message> findAllUserMessage(User user) {
         return messageRepo.findAllByUserOrderByMessageIdDesc(user);
+    }
+
+    @Override
+    public void deleteTags(Long messageId) {
+        messageRepo.deleteByMessageId(messageId);
+    }
+
+    @Override
+    public void addTags(Long messageId, Long tagId) {
+        messageRepo.addTags(messageId,tagId);
     }
 }

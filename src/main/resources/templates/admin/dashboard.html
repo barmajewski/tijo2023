@@ -28,7 +28,7 @@
         </div>
         <br>
         <div class="col-md-9" style="padding-left: 50px">
-            <div class="col-12" style="padding-bottom: 15px" th:each="message : ${messageList}">
+            <div class="col-12" style="padding-bottom: 15px" th:each="message : ${messageList}" th:if="${message.user.enabled==true}">
                 <div class="card">
                     <div class="card-body">
                         <div>
@@ -43,41 +43,6 @@
                             <small class="custom-tag" th:each="tag :${message.tags}" th:text="${'#'+tag.name}">Hello</small>
                         </div>
                         <p th:text="${message.messageContent}"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12" style="padding-bottom: 15px">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <div style="width: 75px; height: 75px; display: inline-block">
-                                <img src="/img/marchewiki.png" class="img-responsive"
-                                     style="height: 100%; width: 100%; border-radius: 5rem">
-                            </div>
-                            <span style="position: relative; top: 10%;left: 2%">User 1</span>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of type</p>
-                        <img src="/img/Dla%20piesolubnych.png" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            <div class="col-12" style="padding-bottom: 15px">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <div style="width: 75px; height: 75px; display: inline-block">
-                                <img src="/img/marchewiki.png" class="img-responsive"
-                                     style="height: 100%; width: 100%; border-radius: 5rem">
-                            </div>
-                            <span style="position: relative; top: 10%;left: 2%">User 1</span>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of type</p>
                     </div>
                 </div>
             </div>

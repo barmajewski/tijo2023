@@ -13,6 +13,7 @@ import pl.majewski.zichterrek.Service.MessageService;
 import pl.majewski.zichterrek.Service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/panel/admin")
@@ -50,10 +51,29 @@ public class AdminHomePageController {
     @GetMapping("/zablokuj/{id}")
     public String banUser(@PathVariable Long id){
         try {
-            User user = userService.findById(id).get();
-            user.setEnabled(false);
-            userService.save(user);
-            return "redirect:/panel/admin?success";
+            Optional<User> user = userService.findById(id);
+            if (user.isPresent()){
+                user.get().setEnabled(false);
+                userService.save(user.get());
+                return "redirect:/panel/admin?success";
+            }
+            return "redirect:/panel/admin?error";
+        } catch (Exception e){
+            e.printStackTrace();
+            return "redirect:/panel/admin?error";
+        }
+    }
+
+    @GetMapping("/odblokuj/{id}")
+    public String unbanUser(@PathVariable Long id){
+        try {
+            Optional<User> user = userService.findById(id);
+            if (user.isPresent()){
+                user.get().setEnabled(true);
+                userService.save(user.get());
+                return "redirect:/panel/admin?success";
+            }
+            return "redirect:/panel/admin?error";
         } catch (Exception e){
             e.printStackTrace();
             return "redirect:/panel/admin?error";

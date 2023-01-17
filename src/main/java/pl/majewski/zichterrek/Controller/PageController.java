@@ -91,10 +91,10 @@ public class PageController {
         User user = userService.createNewUser(registerForm);
         emailService.sendMessage(registerForm.getEmail(), "Utworzono nowe konto w systemie Zichtterek",
                 "Witaj "+registerForm.getFirstName()+"!\n\n"+
-                        "Utworzono dla Ciebie nowe konto w serwisie GunMarket. W celu zalogowania się się wykorzystaj podane przez Ciebie podczas" +
+                        "Utworzono dla Ciebie nowe konto w serwisie Zichtterek. W celu zalogowania się się wykorzystaj podane przez Ciebie podczas" +
                         "rejestracji dane: \n"+
-                        registerForm.getEmail()+"\n"+
-                        registerForm.getPassword()+"\n\n"+
+                        "Twój adres email: " + registerForm.getEmail()+"\n"+
+                        "Twoje hasło: "+registerForm.getPassword()+"\n\n"+
                         "Link aktywacyjny konto : http://localhost:8080/activate-account/"+user.getActivationCode()+"\n\n"+
                         "Dziękujemy za dokłaczenie do naszego serwisu!");
         return "redirect:/?success";

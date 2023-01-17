@@ -52,7 +52,7 @@
                     <form method="post" th:action="@{/panel/uzytkownik/wiadomosc/edytuj}"  enctype="multipart/form-data">
                         <div class="card-body">
                             <input type="hidden" th:value="${message.messageId}" name="messageId">
-<!--                            <input type="hidden" th:value="${message.user}" name="user">-->
+                            <input type="hidden" th:value="${message.user.getUserId()}" name="user">
                             <div>
                                 <textarea class="txta custom-textarea" name="messageContent" th:utext="${message.messageContent}"></textarea>
                             </div>

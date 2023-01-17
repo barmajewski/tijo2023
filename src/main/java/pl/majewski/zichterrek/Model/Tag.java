@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,7 +26,7 @@ public class Tag {
     @Column(name = "nazwa")
     private String name;
 
-    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Message> messages = new HashSet<>();
+//    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    private Set<Message> messages = new HashSet<>();
 }

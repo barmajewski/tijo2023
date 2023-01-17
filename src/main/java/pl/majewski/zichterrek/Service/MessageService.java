@@ -12,4 +12,6 @@ public interface MessageService {
     Message edit(Message message);
     List<Message> findAllMessage();
     List<Message> findAllUserMessage(User user);
+    void deleteTags(Long messageId);
+    void addTags(Long messageId, Long tagId);
 }

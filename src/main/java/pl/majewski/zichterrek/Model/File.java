@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.majewski.zichterrek.Enum.FileTypeEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,7 +30,7 @@ public class File {
     @NotNull
     private String url;
 
-    @JoinColumn(name = "zdjecie")
-    @OneToOne
-    private File picture;
+    @Column(name = "rodzaj_pliku")
+    @Enumerated(EnumType.STRING)
+    private FileTypeEnum fileTypeEnum;
 }
